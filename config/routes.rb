@@ -1,4 +1,18 @@
 Qvali::Application.routes.draw do
+  devise_for :admins
+
+  resources :items
+
+
+  resources :equipamentos
+
+
+  resources :orcamentos
+
+
+  resources :clientes
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
