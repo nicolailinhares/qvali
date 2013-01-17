@@ -1,4 +1,4 @@
-<%= form_for(@item) do |f| %>
+<%= form_for([@cliente, @orcamento, @item]) do |f| %>
   <% if @item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :equipamento %><br />
+    <%= f.select :equipamento, options_for_select(@equipamentos) %>
+  </div>
   <div class="field">
     <%= f.label :quantidade %><br />
     <%= f.number_field :quantidade %>
@@ -19,10 +22,7 @@
     <%= f.label :descricao %><br />
     <%= f.text_area :descricao %>
   </div>
-  <div class="field">
-    <%= f.label :equipamento %><br />
-    <%= f.text_field :equipamento %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

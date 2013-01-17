@@ -1,32 +1,17 @@
-<h1>Listing clientes</h1>
+<h1>Clientes</h1>
 
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Contato</th>
-    <th>Telefone</th>
-    <th>Email</th>
-    <th>Cidade</th>
-    <th>Estado</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @clientes.each do |cliente| %>
-  <tr>
-    <td><%= cliente.nome %></td>
-    <td><%= cliente.contato %></td>
-    <td><%= cliente.telefone %></td>
-    <td><%= cliente.email %></td>
-    <td><%= cliente.cidade %></td>
-    <td><%= cliente.estado %></td>
-    <td><%= link_to 'Show', cliente %></td>
-    <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
-    <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% @cidades.each do |cidade| %>
+  <h3><%= cidade[:cidade] %>, <%= cidade[:estado] %></h3>
+    <% cidade[:clientes].each do |cliente| %>
+      <table>
+      <tr>
+        <td><%= link_to cliente.nome, cliente %></td>
+        <td></td>
+      </tr>
+      </table>
+  <% end %>
 <% end %>
-</table>
+
 
 <br />
 

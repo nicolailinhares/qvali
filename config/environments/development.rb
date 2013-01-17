@@ -15,7 +15,16 @@ Qvali::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :enable_starttls_auto => true,
+    :port => 587,
+    :authentication => :plain,
+    :user_name => "maha.gestao@gmail.com",
+    :password => 'tomilho1712'
+  }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

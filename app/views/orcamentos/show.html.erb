@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h2><%= @orcamento.codigo%></h2>
 <p>
   <b>Data:</b>
   <%= @orcamento.data %>
@@ -7,9 +7,24 @@
 
 <p>
   <b>Cliente:</b>
-  <%= @orcamento.cliente %>
+  <%= @orcamento.cliente.nome %>
 </p>
+<h3>Itens</h3>
+<table>
+	<tr>
+		<th>Número</th>
+		<th>Quantidade</th>
+		<th>Equipamento</th>
+	</tr>
+	<% @orcamento.items.each_with_index do |item, i| %>
+		<tr>
+			<td> <%= link_to (i+1).to_s, edit_cliente_orcamento_item_path(@orcamento.cliente, @orcamento, item) %> 
+			<td><%= item.quantidade %></td>
+			<td><%= item.equipamento.nome%><td>
+	<% end %>
+</table>
 
 
-<%= link_to 'Edit', edit_orcamento_path(@orcamento) %> |
-<%= link_to 'Back', orcamentos_path %>
+<%= link_to 'Editar', edit_cliente_orcamento_path(@orcamento.cliente, @orcamento) %> |
+<%= link_to 'Adicionar Item', new_cliente_orcamento_item_path(@orcamento.cliente, @orcamento) %> |
+<%= link_to 'Transformar em serviço', {controller: :servicos, action: :new, orcamento_id: @orcamento.id, cliente_id: @orcamento.cliente.id} %>

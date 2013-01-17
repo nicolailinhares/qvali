@@ -14,7 +14,8 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @item = Item.find(params[:id])
-
+    @orcamento = @item.orcamento
+    @cliente = @orcamento.cliente
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }
@@ -25,7 +26,10 @@ class ItemsController < ApplicationController
   # GET /items/new.json
   def new
     @item = Item.new
-
+    @orcamento = Orcamento.find(params[:orcamento_id])
+    @cliente = Cliente.find(params[:cliente_id])
+    @equipamentos = Equipamento.all - @orcamento.items.map{ |item| item.equipamento}
+    @equipamentos = @equipamentos.map{|equipamento| [equipamento.nome, equipamento.id]}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @item }
@@ -35,16 +39,21 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @item = Item.find(params[:id])
+    @orcamento = Orcamento.find(params[:orcamento_id])
+    @cliente = Cliente.find(params[:cliente_id])
+    @equipamentos = Equipamento.all - (@orcamento.items.map{ |item| item.equipamento} - [@item.equipamento])
+    @equipamentos = @equipamentos.map{|equipamento| [equipamento.nome, equipamento.id]}
   end
 
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(params[:item])
-
+    @item = Item.new(params[:item].except(:equipamento))
+    @item.orcamento = Orcamento.find(params[:orcamento_id])
+    @item.equipamento = Equipamento.find(params[:item][:equipamento])
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to cliente_orcamento_path(@item.orcamento.cliente, @item.orcamento), notice: 'Item was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }

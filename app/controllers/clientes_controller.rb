@@ -2,8 +2,14 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.all
-
+    
+    cidades = Cliente.select('cidade, estado').group('cidade, estado');
+    @cidades = [];
+    cidades.each do |cidade|
+      clientes = Cliente.where(cidade:cidade.cidade)
+      cidade = {cidade: cidade.cidade, estado: cidade.estado, clientes: clientes}
+      @cidades << cidade
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @clientes }
@@ -14,7 +20,7 @@ class ClientesController < ApplicationController
   # GET /clientes/1.json
   def show
     @cliente = Cliente.find(params[:id])
-
+    @orcamentos = @cliente.orcamentos
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cliente }

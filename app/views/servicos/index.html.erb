@@ -1,0 +1,33 @@
+<h1>Listing servicos</h1>
+
+<table>
+  <tr>
+    <th>Cliente</th>
+    <th>Forma pagamento</th>
+    <th>Data inicio</th>
+    <th>Data fim</th>
+    <th>Entrega relatorio</th>
+    <th>Relatorio entregue</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @servicos.each do |servico| %>
+  <tr>
+    <td><%= servico.cliente %></td>
+    <td><%= servico.forma_pagamento %></td>
+    <td><%= servico.data_inicio %></td>
+    <td><%= servico.data_fim %></td>
+    <td><%= servico.entrega_relatorio %></td>
+    <td><%= servico.relatorio_entregue %></td>
+    <td><%= link_to 'Show', servico %></td>
+    <td><%= link_to 'Edit', edit_servico_path(servico) %></td>
+    <td><%= link_to 'Destroy', servico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Servico', new_servico_path %>

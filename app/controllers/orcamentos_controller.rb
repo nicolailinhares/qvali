@@ -25,7 +25,7 @@ class OrcamentosController < ApplicationController
   # GET /orcamentos/new.json
   def new
     @orcamento = Orcamento.new
-
+    @cliente = Cliente.find(params[:cliente_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @orcamento }
@@ -35,16 +35,18 @@ class OrcamentosController < ApplicationController
   # GET /orcamentos/1/edit
   def edit
     @orcamento = Orcamento.find(params[:id])
+    @cliente = Cliente.find(params[:cliente_id])
   end
 
   # POST /orcamentos
   # POST /orcamentos.json
   def create
-    @orcamento = Orcamento.new(params[:orcamento])
-
+    @orcamento = Orcamento.new(params[:orcamento].except(:cliente))
+    @cliente = Cliente.find(params[:cliente_id])
+    @orcamento.cliente = @cliente
     respond_to do |format|
       if @orcamento.save
-        format.html { redirect_to @orcamento, notice: 'Orcamento was successfully created.' }
+        format.html { redirect_to @orcamento.cliente, notice: 'Orcamento was successfully created.' }
         format.json { render json: @orcamento, status: :created, location: @orcamento }
       else
         format.html { render action: "new" }

@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Nome:</b>
+<h3>
   <%= @cliente.nome %>
-</p>
+</h3>
 
 <p>
   <b>Contato:</b>
@@ -31,5 +30,14 @@
 </p>
 
 
-<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
-<%= link_to 'Back', clientes_path %>
+<%= link_to 'Editar', edit_cliente_path(@cliente) %> |
+<%= link_to 'Excluir', @cliente, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<h3>Orçamentos</h3>
+<ul>
+<% @orcamentos.each do |orcamento|%>
+  <li><%= link_to orcamento.codigo, cliente_orcamento_path(@cliente,orcamento)%> - <%= orcamento.data %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Novo Orçamento', new_cliente_orcamento_path(@cliente) %>

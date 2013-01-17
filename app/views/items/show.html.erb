@@ -16,5 +16,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Editar', edit_cliente_orcamento_item_path(@cliente, @orcamento, @item) %> |
+<%= link_to 'Excluir', cliente_orcamento_item_path(@cliente, @orcamento, @item), method: :delete, data: { confirm: 'Are you sure?' } %>

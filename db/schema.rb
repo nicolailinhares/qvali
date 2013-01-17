@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115122616) do
+ActiveRecord::Schema.define(:version => 20130117123925) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(:version => 20130115122616) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "confirmation_token"
+    t.string   "unconfirmed_email"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
@@ -52,20 +56,36 @@ ActiveRecord::Schema.define(:version => 20130115122616) do
   create_table "items", :force => true do |t|
     t.integer  "quantidade"
     t.text     "descricao"
-    t.integer  "equipamento_id"
+    t.integer  "orcamento_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "equipamento_id"
   end
 
-  add_index "items", ["equipamento_id"], :name => "index_items_on_equipamento_id"
+  add_index "items", ["orcamento_id"], :name => "index_items_on_equipamento_id"
 
   create_table "orcamentos", :force => true do |t|
     t.date     "data"
     t.integer  "cliente_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "codigo"
   end
 
   add_index "orcamentos", ["cliente_id"], :name => "index_orcamentos_on_cliente_id"
+
+  create_table "servicos", :force => true do |t|
+    t.integer  "cliente_id"
+    t.integer  "orcamento_id"
+    t.integer  "forma_pagamento"
+    t.date     "data_inicio"
+    t.date     "data_fim"
+    t.date     "entrega_relatorio"
+    t.boolean  "relatorio_entregue"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "servicos", ["cliente_id"], :name => "index_servicos_on_cliente_id"
 
 end
