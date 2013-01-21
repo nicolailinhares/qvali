@@ -1,4 +1,20 @@
 Qvali::Application.routes.draw do
+  
+
+  get "site/empresa"
+
+  get "site/servicos"
+
+  get "site/validacao"
+
+  get "site/certificacao"
+
+  get "site/consultoria"
+
+  get "site/treinamento"
+
+  get "site/contato"
+
   devise_for :admins
 
   resources :equipamentos
@@ -10,6 +26,7 @@ Qvali::Application.routes.draw do
     end
   end
 
+  root :to => "site#empresa"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

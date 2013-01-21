@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
@@ -121,7 +121,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
-  pg (~> 0.13.2)
+  pg
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
   therubyracer
