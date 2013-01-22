@@ -44,16 +44,21 @@
                     <div class="main">
                         <nav class="indent-left">
                             <ul class="menu wrapper">
-                                <li class="active"><%=link_to "Empresa", {action:"empresa",controller:"site"}%></li>
-                                <li><%=link_to "Servicos", {action:"servicos",controller:"site"}%></li>
-                                <li><%=link_to "Treinamentos", {action:"treinamento",controller:"site"}%></li>
-                                <li><%=link_to "Consultoria", {action:"consultoria",controller:"site"}%></li>
-                                <li><%=link_to "Contato", {action:"contato",controller:"site"}%></li>
+                                <li class="<%=@empresa%>"><%=link_to "Empresa", {action:"empresa",controller:"site"}%></li>
+                                <li class="<%=@servicos%>"><%=link_to "Servicos", {action:"servicos",controller:"site"}%></li>
+                                <li class="<%=@treinamentos%>"><%=link_to "Treinamentos", {action:"treinamento",controller:"site"}%></li>
+                                <li class="<%=@consultoria%>"><%=link_to "Consultoria", {action:"consultoria",controller:"site"}%></li>
+                                <li class="<%=@contato%>"><%=link_to "Contato", {action:"contato",controller:"site"}%></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
+            <%if @empresa.nil?%>
+            <div class="row-bot">
+                <div class="center-shadow"></div>
+            </div>
+            <%end%>
         </header>
         
         <!--==============================content================================-->

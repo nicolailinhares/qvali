@@ -15,6 +15,8 @@ Qvali::Application.routes.draw do
 
   get "site/contato"
 
+  post "site/envia_contato"
+
   devise_for :admins
 
   resources :equipamentos

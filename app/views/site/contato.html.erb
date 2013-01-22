@@ -1,0 +1,41 @@
+<div class="main">
+    <div class="container_12">
+        <div class="wrapper">
+        	<article class="grid_8">
+            	<h3>Envie uma mensagem</h3>
+                <em class="text-2"><%= params[:notice] %></em>
+                <%=form_tag("/site/envia_contato", method: :post, id: "contact-form2") do %>                    
+                    <fieldset>
+                          <label><span class="text-form">Nome:</span><input name="nome" type="text" /></label>
+                          <label><span class="text-form">Email:</span><input name="email" type="text" /></label>                              
+                          <div class="wrapper">
+                            <div class="text-form">Mensagem:</div>
+                            <div class="extra-wrap">
+                                <textarea name="mensagem"></textarea>
+                                <div class="clear"></div>
+                                <div class="buttons2">
+                                    <a href="javascript:0;" onClick="document.getElementById('contact-form2').reset()">Limpar</a>
+                                    <a href="javascript:0;" onClick="document.getElementById('contact-form2').submit()">Enviar</a>
+                                </div> 
+                            </div>
+                          </div>                            
+                    </fieldset>						
+                <%end%>
+            </article>    
+            <article class="grid_4">
+            	<h3>Endereço</h3>
+                <figure class="img-indent-bot img-border">
+                    <iframe width="298" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=Rua+Treviso+89,+Uberl%C3%A2ndia+-+Minas+Gerais&amp;aq=&amp;sll=-18.89248,-48.289638&amp;sspn=0.011024,0.021136&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Treviso,+89+-+Pres.+Roosevelt,+Uberl%C3%A2ndia+-+Minas+Gerais,+38401-184&amp;ll=-18.892482,-48.289633&amp;spn=0.011024,0.021136&amp;t=m&amp;z=14&amp;output=embed"></iframe>
+                </figure>
+                <dl>
+                    <dt class="indent-bot">Rua Treviso 89, Presidente Roosevelt<br>Uberlândia-MG, Brasil.</dt>
+                    <dd><span>Telefones:</span>  +55 34 3083 1814</dd>
+                    <dd><span>l</span>  +55 34 3087 1739</dd>
+                    <dd><span>l</span>  +55 34 8805 4356</dd>
+                    <dd><span>Email:</span><a href="mail-to:contato@qvali.com.br">contato@qvali.com.br</a></dd>
+                </dl>
+            </article>                        
+        </div>
+    </div>
+</div>
+<div class="block"></div>

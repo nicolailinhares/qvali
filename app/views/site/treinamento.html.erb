@@ -1,2 +1,22 @@
-<h1>Site#treinamento</h1>
-<p>Find me in app/views/site/treinamento.html.erb</p>
+<div class="main espaco">
+    <div class="container_12">
+        <div class="wrapper">
+        	<h3>Treinamentos</h3>
+            <article class="grid_6">
+                <p class="text-1">Oferecemos treinamentos nas seguintes áreas:</p>
+                <ul class="text-1 list-1 margin-bot">
+                	<li>Gestão Metrológica</li>
+                	<li>Rotinas de validação</li>
+                	<li>Uso de equipamentos e tecnologias</li>
+                </ul>
+                <p class="text-1">Para maiores informações entre <%=link_to "em contato", {action:"contato", controller:"site"} %>.</p>
+              </article>
+              <article class="grid_6">
+              	<figure>
+              		<img src="/imagens/treinamentos.png" class="img-border" />
+              	</figure>
+              </article>
+        </div>
+    </div>
+</div>
+<div class="block"></div>
